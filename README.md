@@ -1,168 +1,82 @@
-# Task Management System (Full Stack)
+Task Manager (Full Stack Assignment)
+🚀 Overview
 
-## 🚀 Overview
+A minimal full-stack Task Manager application built as part of a technical assignment.
+The app allows users to create, view, update, and delete tasks with a clean and simple interface.
 
-A full-stack Task Management application built with Node.js, Express, MongoDB, and React.
-The application allows users to manage tasks efficiently with authentication, filtering, search, and analytics.
+The implementation focuses on core functionality, API design, and code clarity, as required by the assignment.
 
----
+🔗 Project Links
+GitHub Repository: https://github.com/karthiknani229-art/simple-task-manager-assignment
+Live Demo: (optional — add if deployed)
+✨ Features
+Frontend
+Display list of tasks
+Add new task
+Mark task as completed
+Delete task
+Loading and error handling
+Backend
+REST API for task management
+Basic input validation
+Structured JSON responses
+🛠 Tech Stack
 
-## ✨ Features
+Frontend
 
-### 🔐 Authentication
+React (Vite)
+Axios
 
-* User registration & login
-* JWT-based authentication
-* Protected routes
+Backend
 
-### 📋 Task Management
+Node.js
+Express.js
 
-* Create, view, update, and delete tasks
-* Task status toggle (todo ↔ done)
-* Priority selection (low, medium, high)
+Storage
 
-### 🔎 Filtering & Search
-
-* Filter tasks by status (All / Pending / Done)
-* Search tasks by title
-
-### 📊 Analytics
-
-* Total tasks
-* Completed tasks
-* Pending tasks
-* Completion rate
-
-### 🎨 UI
-
-* Clean and simple interface
-* Structured layout (dashboard + task list)
-
----
-
-## 🛠 Tech Stack
-
-**Frontend**
-
-* React (Vite)
-* Axios
-* React Router
-
-**Backend**
-
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-
-**Authentication**
-
-* JSON Web Tokens (JWT)
-
----
-
-## 📦 Project Structure
-
-```
-full-stack-task-app/
-│
-├── backend/
-│   ├── controllers/
-│   ├── routes/
-│   ├── models/
-│   ├── middleware/
-│   └── server.js
-│
-├── frontend/
-│   ├── src/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── App.jsx
-│
-└── README.md
-```
-
----
-
-## ⚙️ Setup Instructions
-
-### 1️⃣ Clone Repository
-
-```
-git clone <your-repo-link>
-cd full-stack-task-app
-```
-
----
-
-### 2️⃣ Backend Setup
-
-```
+In-memory (no database, as per assignment scope)
+📡 API Endpoints
+Method	Endpoint	Description
+GET	/tasks	Fetch all tasks
+POST	/tasks	Create a new task
+PATCH	/tasks/	Toggle task completion
+DELETE	/tasks/	Delete a task
+📌 Task Data Model
+{
+  id: string,
+  title: string,
+  completed: boolean,
+  createdAt: string
+}
+⚙️ Setup Instructions
+1. Clone the repository
+git clone https://github.com/karthiknani229-art/simple-task-manager-assignment.git
+cd simple-task-manager-assignment
+2. Backend setup
 cd backend
 npm install
-```
-
-Create `.env` file:
-
-```
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/taskmanager
-JWT_SECRET=your_secret_key
-```
-
-Run backend:
-
-```
 npm run dev
-```
 
----
+Server runs at:
 
-### 3️⃣ Frontend Setup
-
-```
+http://localhost:5000
+3. Frontend setup
 cd frontend
 npm install
 npm run dev
-```
 
-Open:
+App runs at:
 
-```
 http://localhost:5173
-```
+💡 Notes
+The application was intentionally kept simple and minimal to align with the assignment requirement of a 1–2 hour implementation.
+Focus areas include:
+Clean API design
+Proper state management
+Basic validation and error handling
+No unnecessary features or over-engineering were added.
+✅ Status
 
----
-
-## 📡 API Endpoints
-
-### Auth
-
-* POST /api/auth/register
-* POST /api/auth/login
-
-### Tasks
-
-* GET /api/tasks
-* POST /api/tasks
-* PUT /api/tasks/:id
-* DELETE /api/tasks/:id
-
-### Analytics
-
-* GET /api/tasks/stats
-
----
-
-## 💡 Key Design Decisions
-
-* JWT for stateless authentication
-* Middleware for route protection
-* MongoDB for flexible schema
-* Modular folder structure for scalability
-
----
-
-## 📌 Notes
-
-* The application runs fully locally.
-* Deployment can be done if required.
+✔ Fully functional
+✔ Meets all core requirements
+✔ Ready for evaluation
