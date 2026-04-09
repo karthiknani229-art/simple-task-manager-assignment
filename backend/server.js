@@ -1,33 +1,97 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
-import { connectDB } from "./config/db.js";
 
-import authRoutes from "./routes/authroutes.js";
-import testRoutes from "./routes/testroutes.js";
-import taskRoutes from "./routes/taskRoutes.js";
-
-dotenv.config();
-connectDB();
-
-const app = express();   // ✅ FIRST define app
-
-// middleware
+const app = express();
 app.use(cors());
 app.use(express.json());
 
-// routes
-app.use("/api/auth", authRoutes);
-app.use("/api/test", testRoutes);
-app.use("/api/tasks", taskRoutes);   // ✅ NOW it's safe
+let tasks = [];
 
-// test route
-app.get("/", (req, res) => {
-  res.send("API is running...");
+/**
+ * GET /tasks
+ */
+app.get("/tasks", (req, res) => {
+  res.status(200).json({
+    success: true,
+    data: tasks,
+  });
 });
 
-const PORT = process.env.PORT || 5000;
+/**
+ * POST /tasks
+ */
+app.post("/tasks", (req, res) => {
+  const { title } = req.body;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  // ✅ Validation
+  if (!title || title.trim() === "") {
+    return res.status(400).json({
+      success: false,
+      message: "Title is required",
+    });
+  }
+
+  const newTask = {
+    id: Date.now().toString(),
+    title,
+    completed: false,
+    createdAt: new Date().toISOString(),
+  };
+
+  tasks.push(newTask);
+
+  res.status(201).json({
+    success: true,
+    data: newTask,
+  });
+});
+
+/**
+ * PATCH /tasks/:id
+ */
+app.patch("/tasks/:id", (req, res) => {
+  const { id } = req.params;
+
+  const task = tasks.find((t) => t.id === id);
+
+  if (!task) {
+    return res.status(404).json({
+      success: false,
+      message: "Task not found",
+    });
+  }
+
+  task.completed = !task.completed;
+
+  res.json({
+    success: true,
+    data: task,
+  });
+});
+
+/**
+ * DELETE /tasks/:id
+ */
+app.delete("/tasks/:id", (req, res) => {
+  const { id } = req.params;
+
+  const exists = tasks.some((t) => t.id === id);
+
+  if (!exists) {
+    return res.status(404).json({
+      success: false,
+      message: "Task not found",
+    });
+  }
+
+  tasks = tasks.filter((t) => t.id !== id);
+
+  res.json({
+    success: true,
+    message: "Task deleted",
+  });
+});
+
+app.listen(5000, () => {
+  console.log("Server running on http://localhost:5000");
 });
