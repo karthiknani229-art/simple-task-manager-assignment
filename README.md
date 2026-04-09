@@ -1,7 +1,7 @@
 Task Manager (Full Stack Assignment)
 🚀 Overview
 
-A minimal full-stack Task Manager application built as part of a technical assignment.
+The application was intentionally kept simple and minimal to align with the assignment requirement of a 1–2 hour implementation.
 The app allows users to create, view, update, and delete tasks with a clean and simple interface.
 
 The implementation focuses on core functionality, API design, and code clarity, as required by the assignment.
